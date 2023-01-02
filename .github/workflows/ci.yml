@@ -1,0 +1,30 @@
+name: CI
+on:
+  push:
+    branches:
+      - main
+      - hotfix/*
+      - feature/*
+      - feat/*
+      - release/*
+      - fix/*
+      - chore/*
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check branch name
+        uses: deepakputhraya/action-branch-name@master
+        with:
+          regex: '^(feature|feat|release|chore|fix|hotfix)\/[\w-]+$'
+          ignore: main
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm ci
+      - name: Building project
+        run: |
+          echo Building project
+          npm run build --if-present

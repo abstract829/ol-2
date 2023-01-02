@@ -1,0 +1,40 @@
+{
+  "name": "front-onlylabs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "build-export": "next build && next export",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@auth0/auth0-react": "^1.12.0",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@fontsource/roboto": "^4.5.8",
+    "@mui/icons-material": "^5.10.15",
+    "@mui/material": "^5.10.15",
+    "@tanstack/react-query": "^4.16.1",
+    "@tanstack/react-query-devtools": "^4.16.1",
+    "axios": "^1.2.0",
+    "formik": "^2.2.9",
+    "next": "13.0.5",
+    "notistack": "^2.0.8",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-icons": "^4.6.0",
+    "react-markdown": "^8.0.3",
+    "react-toastify": "^9.1.1",
+    "react-vnc": "^0.5.5",
+    "react-vnc-display": "^2.0.1",
+    "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "@types/node": "18.11.9",
+    "eslint": "8.28.0",
+    "eslint-config-next": "13.0.5",
+    "typescript": "4.9.3"
+  }
+}

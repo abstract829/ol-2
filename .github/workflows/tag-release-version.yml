@@ -1,0 +1,49 @@
+name: tag-release-version
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+jobs:
+  create-tag-version:
+    name: Create Tag Version
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    if: github.event.pull_request.merged == true
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Get new version
+      id: new_version
+      run: |
+        branch_name="${{ github.head_ref }}"
+        echo "Merged branch: $branch_name"
+        type_branch=$(echo $branch_name | cut -d "/" -f -1)
+        echo $type_branch | grep feat && BUMP='minor' || BUMP='patch'
+        # Download the script and save it to /usr/local/bin
+        wget -O /usr/local/bin/semver \
+          https://raw.githubusercontent.com/fsaintjacques/semver-tool/master/src/semver
+        # Make script executable
+        chmod +x /usr/local/bin/semver
+        CURRENT_VERSION=$(git describe --tags --abbrev=0 | sed 's/v//g')
+        echo "Previous version: $CURRENT_VERSION"
+        NEW_VERSION=v$(semver bump $BUMP $CURRENT_VERSION)
+        echo "New version: $NEW_VERSION"
+        echo "::set-output name=NEW_VERSION::$NEW_VERSION"
+    - name: Create tag
+      uses: actions/github-script@v3
+      with:
+        script: |
+          github.git.createRef({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            ref: "refs/tags/${{ steps.new_version.outputs.NEW_VERSION }}",
+            sha: context.sha
+          })
+    - uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        prerelease: false
+        automatic_release_tag: ${{ steps.new_version.outputs.NEW_VERSION }}

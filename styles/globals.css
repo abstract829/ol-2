@@ -1,0 +1,81 @@
+h1 {
+  font-size: 2.5em;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 0.5em;
+  margin-top: 0;
+  color: white;
+}
+
+h2 {
+  font-size: 2em;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 0.5em;
+  margin-top: 0;
+  color: white;
+}
+
+h3 {
+  font-size: 1.5em;
+  font-weight: 700;
+  margin-bottom: 0.5em;
+  margin-top: 0;
+  color: white;
+}
+
+:root {
+  --toastify-color-dark: #07031d !important;
+}
+.Toastify__toast-container {
+  width: 500px !important;
+}
+
+.Toastify__toast-theme--dark.Toastify__toast--success {
+  border: 1px solid rgb(0, 200, 0);
+  border-left: 10px solid rgb(0, 200, 0);
+  height: 50px !important;
+}
+.Toastify__toast-theme--dark.Toastify__toast--error {
+  border: 1px solid #e74c3c;
+  border-left: 10px solid #e74c3c;
+  height: 50px !important;
+}
+.Toastify__toast-body {
+  font-size: 14px;
+}
+
+.no-outline {
+  outline: none !important;
+}
+.no-outline:focus {
+  outline: none !important;
+}
+html {
+  min-width: 960px;
+}
+.custom-scrollbar {
+  overflow-y: scroll;
+}
+.custom-scrollbar::-webkit-scrollbar {
+  width: 20px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #7506f7;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #7506f7;
+}
+.link:hover {
+  color: #7506f7 !important;
+  text-decoration: underline !important;
+}
